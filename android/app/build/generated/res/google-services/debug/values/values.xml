@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">149451468054-g44rokgg6thg6olt47mhlngssfrup9g9.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">149451468054</string>
+    <string name="google_api_key" translatable="false">AIzaSyCecZ_TgD7VFO7EgkbFA-3B2bM9qLvOzuY</string>
+    <string name="google_app_id" translatable="false">1:149451468054:android:dfc49acc4517894fc03437</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCecZ_TgD7VFO7EgkbFA-3B2bM9qLvOzuY</string>
+    <string name="google_storage_bucket" translatable="false">agriapp-f1920.appspot.com</string>
+    <string name="project_id" translatable="false">agriapp-f1920</string>
+</resources>
