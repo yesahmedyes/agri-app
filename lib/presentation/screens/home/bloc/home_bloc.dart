@@ -9,6 +9,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeChangeToHomeEvent>(_changeToHome);
     on<HomeChangeToReportsEvent>(_changeToReports);
     on<HomeChangeToProfileEvent>(_changeToProfile);
+    on<HomeChangeToChatEvent>(_changeToChat);
   }
 
   void _changeToHome(HomeChangeToHomeEvent event, Emitter<HomeState> emit) {
@@ -17,6 +18,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   void _changeToReports(HomeChangeToReportsEvent event, Emitter<HomeState> emit) {
     emit(HomeReportsState());
+  }
+
+  void _changeToChat(HomeChangeToChatEvent event, Emitter<HomeState> emit) {
+    emit(HomeChatState());
   }
 
   void _changeToProfile(HomeChangeToProfileEvent event, Emitter<HomeState> emit) {

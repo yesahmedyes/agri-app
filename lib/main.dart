@@ -1,7 +1,9 @@
 import 'package:agriapp/data/repositories/auth_repository.dart';
+import 'package:agriapp/data/repositories/chat_repository.dart';
 import 'package:agriapp/data/repositories/farm_repository.dart';
 import 'package:agriapp/data/repositories/reports_repository.dart';
 import 'package:agriapp/data/repositories/weather_repository.dart';
+import 'package:agriapp/logic/chat/chat_bloc.dart';
 import 'package:agriapp/logic/login/login_bloc.dart';
 import 'package:agriapp/logic/reports/reports_bloc.dart';
 import 'package:agriapp/logic/weather/weather_bloc.dart';
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<FarmRepository>(create: (context) => FarmRepository()),
         RepositoryProvider<WeatherRepository>(create: (context) => WeatherRepository()),
         RepositoryProvider<ReportsRepository>(create: (context) => ReportsRepository()),
+        RepositoryProvider<ChatRepository>(create: (context) => ChatRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -44,7 +47,8 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<FarmsBloc>(create: (context) => FarmsBloc(farmRepository: context.read<FarmRepository>())..add(FarmsLoadEvent())),
           BlocProvider<WeatherBloc>(create: (context) => WeatherBloc(weatherRepository: context.read<WeatherRepository>())),
-          BlocProvider<ReportsBloc>(create: (context) => ReportsBloc(reportsRepository: context.read<ReportsRepository> ())),
+          BlocProvider<ReportsBloc>(create: (context) => ReportsBloc(reportsRepository: context.read<ReportsRepository>())),
+          BlocProvider<ChatBloc>(create: (context) => ChatBloc(chatRepository: context.read<ChatRepository>())),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',

@@ -11,4 +11,6 @@ class HomeInitialState extends HomeState {}
 
 class HomeReportsState extends HomeState {}
 
+class HomeChatState extends HomeState {}
+
 class HomeProfileState extends HomeState {}

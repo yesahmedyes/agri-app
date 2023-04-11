@@ -11,4 +11,6 @@ class HomeChangeToHomeEvent extends HomeEvent {}
 
 class HomeChangeToReportsEvent extends HomeEvent {}
 
+class HomeChangeToChatEvent extends HomeEvent {}
+
 class HomeChangeToProfileEvent extends HomeEvent {}

@@ -22,7 +22,7 @@ class HomeBottomAppBar extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.assignment_outlined),
+                      Icon(Icons.assignment_outlined, size: 22),
                       SizedBox(height: 2),
                       Text('Reports', style: TextStyle(fontSize: 12)),
                     ],
@@ -34,9 +34,21 @@ class HomeBottomAppBar extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.home),
+                      Icon(Icons.home_outlined),
                       SizedBox(height: 2),
                       Text('Home', style: TextStyle(fontSize: 12)),
+                    ],
+                  ),
+                ),
+                OutlinedButton(
+                  onPressed: (state is HomeChatState) ? () {} : () => context.read<HomeBloc>().add(HomeChangeToChatEvent()),
+                  style: (state is HomeChatState) ? OutlinedButton.styleFrom(foregroundColor: Theme.of(context).primaryColor, backgroundColor: Colors.transparent) : OutlinedButton.styleFrom(foregroundColor: Colors.black54, backgroundColor: Colors.transparent),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(Icons.chat_bubble_outline, size: 20),
+                      SizedBox(height: 2),
+                      Text('Chat', style: TextStyle(fontSize: 12)),
                     ],
                   ),
                 ),
@@ -46,7 +58,7 @@ class HomeBottomAppBar extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.person),
+                      Icon(Icons.person_outline),
                       SizedBox(height: 2),
                       Text('Profile', style: TextStyle(fontSize: 12)),
                     ],
