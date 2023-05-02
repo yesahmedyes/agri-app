@@ -13,7 +13,7 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: const IconThemeData(color: Colors.white),
       leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: (onPressed == null) ? () => Navigator.of(context).pop() : onPressed),
       titleSpacing: 2,
-      title: Text(text ?? '', style: Theme.of(context).textTheme.headline1!.copyWith(height: 1.25)),
+      title: Text(text ?? '', style: Theme.of(context).textTheme.headline2!.copyWith(height: 1.25, color: Colors.white)),
     );
   }
 

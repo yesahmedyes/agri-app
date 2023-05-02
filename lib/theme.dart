@@ -15,6 +15,7 @@ ThemeData theme() {
       headline1: TextStyle(fontSize: 20, height: 1.8, fontWeight: FontWeight.w500, color: Colors.black87),
       headline2: TextStyle(fontSize: 18, height: 1.8, fontWeight: FontWeight.w500, color: Colors.black87),
       headline3: TextStyle(fontSize: 16, height: 1.8, fontWeight: FontWeight.w500, color: Colors.black),
+      headline4: TextStyle(fontSize: 14, color: Colors.grey),
       bodyText1: TextStyle(fontSize: 15, height: 1.5, fontWeight: FontWeight.w400, color: Colors.black),
       bodyText2: TextStyle(fontSize: 15, height: 1.5, fontWeight: FontWeight.w500, color: Colors.black),
       subtitle1: TextStyle(fontSize: 15, height: 1.5, fontWeight: FontWeight.w500, color: Colors.black87, letterSpacing: 1),

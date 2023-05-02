@@ -1,3 +1,4 @@
+import 'package:agriapp/presentation/screens/categories/categories_home.dart';
 import 'package:agriapp/presentation/screens/chat/chat_home.dart';
 import 'package:agriapp/presentation/screens/home/bloc/home_bloc.dart';
 import 'package:agriapp/presentation/screens/home/widgets/home_bottom_app_bar.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           if (state is HomeReportsState) {
             return const ReportsHome();
           } else if (state is HomeInitialState) {
-            return const Center(child: Text('Home'));
+            return const CategoriesHome();
           } else if (state is HomeChatState) {
             return ChatHome();
           }

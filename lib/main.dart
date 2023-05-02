@@ -1,10 +1,15 @@
 import 'package:agriapp/data/repositories/auth_repository.dart';
+import 'package:agriapp/data/repositories/cartRepository.dart';
 import 'package:agriapp/data/repositories/chat_repository.dart';
 import 'package:agriapp/data/repositories/farm_repository.dart';
+import 'package:agriapp/data/repositories/ordersRepository.dart';
+import 'package:agriapp/data/repositories/productsRepository.dart';
 import 'package:agriapp/data/repositories/reports_repository.dart';
 import 'package:agriapp/data/repositories/weather_repository.dart';
+import 'package:agriapp/logic/categories/categories_bloc.dart';
 import 'package:agriapp/logic/chat/chat_bloc.dart';
 import 'package:agriapp/logic/login/login_bloc.dart';
+import 'package:agriapp/logic/product/product_bloc.dart';
 import 'package:agriapp/logic/reports/reports_bloc.dart';
 import 'package:agriapp/logic/weather/weather_bloc.dart';
 import 'package:agriapp/presentation/initial.dart';
@@ -15,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'logic/cart/cart_bloc.dart';
 import 'logic/farms/farms_bloc.dart';
 
 void main() async {
@@ -38,6 +44,9 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<WeatherRepository>(create: (context) => WeatherRepository()),
         RepositoryProvider<ReportsRepository>(create: (context) => ReportsRepository()),
         RepositoryProvider<ChatRepository>(create: (context) => ChatRepository()),
+        RepositoryProvider<ProductsRepository>(create: (context) => ProductsRepository()),
+        RepositoryProvider<CartRepository>(create: (context) => CartRepository()),
+        RepositoryProvider<OrdersRepository>(create: (context) => OrdersRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -45,6 +54,9 @@ class MyApp extends StatelessWidget {
             create: (context) => LoginBloc(authRepository: context.read<AuthRepository>())..add(LoginCheckStatusEvent()),
             lazy: false,
           ),
+          BlocProvider<CategoriesBloc>(create: (context) => CategoriesBloc(categoryRepository: context.read<ProductsRepository>())..add(CategoriesFetchEvent())),
+          BlocProvider<ProductBloc>(create: (context) => ProductBloc(categoryRepository: context.read<ProductsRepository>())),
+          BlocProvider<CartBloc>(create: (context) => CartBloc(cartRepository: context.read<CartRepository>())..add(CartCheckStatusEvent())),
           BlocProvider<FarmsBloc>(create: (context) => FarmsBloc(farmRepository: context.read<FarmRepository>())..add(FarmsLoadEvent())),
           BlocProvider<WeatherBloc>(create: (context) => WeatherBloc(weatherRepository: context.read<WeatherRepository>())),
           BlocProvider<ReportsBloc>(create: (context) => ReportsBloc(reportsRepository: context.read<ReportsRepository>())),

@@ -1,9 +1,20 @@
+import 'package:agriapp/data/models/product.dart';
 import 'package:agriapp/presentation/screens/auth/login_screen.dart';
+import 'package:agriapp/presentation/screens/cart/cartScreen.dart';
 import 'package:agriapp/presentation/screens/get_farm/get_farm_location_screen.dart';
 import 'package:agriapp/presentation/screens/reports_detail/reports_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/screens/auth/getting_started.dart';
+import 'presentation/screens/product/product_detail_screen.dart';
+import 'presentation/screens/product/products_list_screen.dart';
+
+class ProductDetailArguments {
+  final Product product;
+  final String categoryId;
+
+  ProductDetailArguments({required this.product, required this.categoryId});
+}
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,10 +23,17 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => const GettingStartedScreen());
       case '/login':
         return MaterialPageRoute(builder: (context) => LoginScreen());
+      case '/cart':
+        return MaterialPageRoute(builder: (context) => const CartScreen(), settings: const RouteSettings(name: '/cart'));
       case '/getFarm':
         return MaterialPageRoute(builder: (context) => GetFarmLocationScreen());
       case '/reportsDetail':
         return MaterialPageRoute(builder: (context) => const ReportsDetailScreen());
+      case '/productsList':
+        return MaterialPageRoute(builder: (context) => const ProductsListScreen());
+      case '/productDetail':
+        final args = settings.arguments as ProductDetailArguments;
+        return MaterialPageRoute(builder: (context) => ProductDetailScreen(product: args.product, categoryId: args.categoryId));
       default:
         return MaterialPageRoute(builder: (context) => const GettingStartedScreen());
     }
