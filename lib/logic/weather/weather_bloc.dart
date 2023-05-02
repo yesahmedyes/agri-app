@@ -10,13 +10,19 @@ part 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
 
+  final Map<LatLng, Map<DateTime, Weather>> cachedWeather = {};
+
   WeatherBloc({required this.weatherRepository}) : super(WeatherInitialState()) {
     on<WeatherFetchEvent>((event, emit) async {
       emit(WeatherInitialState());
 
-      final Map<DateTime, Weather> weather = await weatherRepository.getWeather(const LatLng(35.5, -70));
+      if (!cachedWeather.containsKey(event.latLng)) {
+        final Map<DateTime, Weather> weather = await weatherRepository.getWeather(event.latLng);
 
-      emit(WeatherFetchedState(weather: weather));
+        cachedWeather[event.latLng] = weather;
+      }
+
+      emit(WeatherFetchedState(weather: cachedWeather[event.latLng]!));
     });
   }
 }

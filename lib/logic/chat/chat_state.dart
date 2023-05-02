@@ -9,6 +9,15 @@ abstract class ChatState extends Equatable {
 
 class ChatInitialState extends ChatState {}
 
+class ChatLoadingState extends ChatState {
+  final List<Chat> chats;
+
+  const ChatLoadingState({required this.chats});
+
+  @override
+  List<Object> get props => chats.map((e) => e.content).toList();
+}
+
 class ChatLoadedState extends ChatState {
   final List<Chat> chats;
 

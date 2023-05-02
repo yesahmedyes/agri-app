@@ -1,4 +1,5 @@
 import 'package:agriapp/logic/chat/chat_bloc.dart';
+import 'package:agriapp/presentation/widgets/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,6 +53,20 @@ class ChatHome extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: ChatTextsWidget(chats: state.chats),
                           ),
+                        ),
+                      if (state is ChatLoadingState)
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: ChatTextsWidget(chats: state.chats),
+                          ),
+                        ),
+                      if (state is ChatLoadingState)
+                        Container(
+                          width: 25,
+                          height: 25,
+                          margin: const EdgeInsets.only(top: 8, bottom: 25),
+                          child: const CustomProgressIndicator(strokeWidth: 3),
                         ),
                       TextFormField(
                         controller: _controller,

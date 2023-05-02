@@ -9,14 +9,20 @@ part 'reports_state.dart';
 class ReportsBloc extends Bloc<ReportsEvent, ReportsState> {
   final ReportsRepository reportsRepository;
 
+  final Map<String, Report?> cachedReports = {};
+
   ReportsBloc({required this.reportsRepository}) : super(ReportsInitialState()) {
     on<ReportsFetchEvent>((event, emit) async {
       emit(ReportsInitialState());
 
-      final report = await reportsRepository.getReport(event.farmId);
+      if (!cachedReports.containsKey(event.farmId)) {
+        final report = await reportsRepository.getReport(event.farmId);
 
-      if (report != null) {
-        emit(ReportsFetchedState(report: report));
+        cachedReports[event.farmId] = report;
+      }
+
+      if (cachedReports[event.farmId] != null) {
+        emit(ReportsFetchedState(report: cachedReports[event.farmId]!));
       }
     });
   }

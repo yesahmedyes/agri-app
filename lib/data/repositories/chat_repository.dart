@@ -11,7 +11,7 @@ class ChatRepository {
       {
         "model": "gpt-3.5-turbo",
         "messages": [
-          {"role": "system", "content": "You are a helpful assistant that helps farmers with information to increase their yields"},
+          {"role": "system", "content": "You are a helpful assistant that helps farmers in Pakistan with information to increase their yields"},
           chat.toMap(),
         ],
         "temperature": 0.7
@@ -20,7 +20,7 @@ class ChatRepository {
 
     final response = await http.post(
       url,
-      headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
+      headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
       body: body,
     );
 
