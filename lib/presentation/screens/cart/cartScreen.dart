@@ -1,6 +1,7 @@
 import 'package:agriapp/logic/cart/cart_bloc.dart';
-import 'package:agriapp/presentation/widgets/appBars/customAppBarBack.dart';
 import 'package:agriapp/presentation/widgets/custom_progress_indicator.dart';
+import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
+import 'package:agriapp/presentation/widgets/navigation/customBottomNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +34,7 @@ class CartScreen extends StatelessWidget {
           return const CustomProgressIndicator();
         },
       ),
-      // bottomNavigationBar: CustomBottomNavigation(text: 'Proceed to Checkout', onPressed: () => Navigator.of(context).pushNamed('/location')),
+      bottomNavigationBar: CustomBottomNavigation(text: 'Proceed to Checkout', onPressed: () => Navigator.of(context).pushNamed('/location')),
     );
   }
 }

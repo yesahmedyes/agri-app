@@ -2,10 +2,10 @@ import 'package:agriapp/data/models/product.dart';
 import 'package:agriapp/extensions.dart';
 import 'package:agriapp/logic/cart/cart_bloc.dart';
 import 'package:agriapp/presentation/screens/product/widgets/productDetailPrice.dart';
-import 'package:agriapp/presentation/widgets/appBars/customAppBarBack.dart';
 import 'package:agriapp/presentation/widgets/buttons/full_width_button.dart';
 import 'package:agriapp/presentation/widgets/form/custom_drop_down.dart';
 import 'package:agriapp/presentation/widgets/form/custom_text_form_field.dart';
+import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
     if (isValid) {
       context.read<CartBloc>().add(CartUpdateEvent(categoryId: categoryId, productId: product.documentId, productName: product.name, productImage: product.image, quantity: int.parse(_controller.text), price: product.price));
 
-      // Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+      Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
     }
   }
 

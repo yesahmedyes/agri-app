@@ -6,6 +6,8 @@ import 'package:agriapp/presentation/screens/reports_detail/reports_detail_scree
 import 'package:flutter/material.dart';
 
 import 'presentation/screens/auth/getting_started.dart';
+import 'presentation/screens/checkout/checkoutScreen.dart';
+import 'presentation/screens/checkout/locationScreen.dart';
 import 'presentation/screens/product/product_detail_screen.dart';
 import 'presentation/screens/product/products_list_screen.dart';
 
@@ -25,6 +27,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => LoginScreen());
       case '/cart':
         return MaterialPageRoute(builder: (context) => const CartScreen(), settings: const RouteSettings(name: '/cart'));
+      case '/location':
+        return MaterialPageRoute(builder: (context) => LocationScreen(), settings: const RouteSettings(name: '/location'));
+      case '/checkout':
+        return MaterialPageRoute(builder: (context) => const CheckoutScreen(), settings: const RouteSettings(name: '/checkout'));
       case '/getFarm':
         return MaterialPageRoute(builder: (context) => GetFarmLocationScreen());
       case '/reportsDetail':
@@ -34,6 +40,7 @@ class RouteGenerator {
       case '/productDetail':
         final args = settings.arguments as ProductDetailArguments;
         return MaterialPageRoute(builder: (context) => ProductDetailScreen(product: args.product, categoryId: args.categoryId));
+
       default:
         return MaterialPageRoute(builder: (context) => const GettingStartedScreen());
     }

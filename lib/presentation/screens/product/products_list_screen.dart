@@ -1,7 +1,7 @@
 import 'package:agriapp/data/models/product.dart';
 import 'package:agriapp/extensions.dart';
 import 'package:agriapp/logic/product/product_bloc.dart';
-import 'package:agriapp/presentation/widgets/appBars/customAppBarBack.dart';
+import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:agriapp/presentation/widgets/custom_progress_indicator.dart';
 import 'package:agriapp/routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';

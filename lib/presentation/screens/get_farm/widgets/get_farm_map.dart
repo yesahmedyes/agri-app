@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:agriapp/presentation/screens/get_farm/get_farm_name_screen.dart';
-import 'package:agriapp/presentation/widgets/form/custom_text_form_field.dart';
 import 'package:agriapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -36,15 +35,19 @@ class _GetFarmMapWidgetState extends State<GetFarmMapWidget> {
     });
   }
 
-  _onSave() {
-    if (polygonCoordinates.length > 2) Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetFarmNameScreen(coordinates: polygonCoordinates)));
-  }
-
   @override
   void initState() {
     super.initState();
 
     cameraPosition = widget.data;
+  }
+
+  _onSave() {
+    if (polygonCoordinates.length > 2) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => GetFarmNameScreen(coordinates: polygonCoordinates)),
+      );
+    }
   }
 
   @override
@@ -78,11 +81,12 @@ class _GetFarmMapWidgetState extends State<GetFarmMapWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomTextFormField(
-                controller: TextEditingController(),
-                text: 'Search Place',
-                suffixIcon: const Padding(padding: EdgeInsets.only(right: 8.0), child: Icon(Icons.search)),
-              ),
+              // CustomTextFormField(
+              //   controller: TextEditingController(),
+              //   text: 'Search Place',
+              //   suffixIcon: const Padding(padding: EdgeInsets.only(right: 8.0), child: Icon(Icons.search)),
+              // ),
+              const SizedBox.shrink(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,3 +140,6 @@ class _GetFarmMapWidgetState extends State<GetFarmMapWidget> {
     );
   }
 }
+
+
+

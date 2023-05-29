@@ -9,12 +9,12 @@ class ChatRepository {
 
     final body = jsonEncode(
       {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-3.5-turbo-0301",
         "messages": [
           {"role": "system", "content": "You are a helpful assistant that helps farmers in Pakistan with information to increase their yields"},
           chat.toMap(),
         ],
-        "temperature": 0.7
+        "temperature": 0.6
       },
     );
 

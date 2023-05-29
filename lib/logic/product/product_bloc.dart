@@ -1,5 +1,5 @@
 import 'package:agriapp/data/models/product.dart';
-import 'package:agriapp/data/repositories/productsRepository.dart';
+import 'package:agriapp/data/repositories/products_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

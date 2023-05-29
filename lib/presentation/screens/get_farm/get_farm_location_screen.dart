@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:agriapp/presentation/screens/get_farm/widgets/get_farm_map.dart';
+import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -33,6 +34,7 @@ class GetFarmLocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBarBack(),
       body: FutureBuilder(
         future: _getUserCurrentLocation(),
         builder: (context, snapshot) {

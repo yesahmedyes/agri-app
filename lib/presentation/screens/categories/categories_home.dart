@@ -96,13 +96,13 @@ class CustomAppBar extends StatelessWidget {
                       children: [
                         const Icon(Icons.shopping_cart_rounded, color: Colors.black87),
                         Positioned(
-                          top: -4,
-                          right: -4,
+                          top: -6,
+                          right: -6,
                           child: Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
-                            child: Center(child: Text(state.items.length.toString(), style: const TextStyle(fontSize: 8, color: Colors.white))),
+                            width: 17,
+                            height: 17,
+                            decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                            child: Center(child: Text(state.items.length.toString(), style: const TextStyle(fontSize: 7, color: Colors.white))),
                           ),
                         )
                       ],

@@ -1,14 +1,16 @@
 import 'package:agriapp/data/repositories/auth_repository.dart';
-import 'package:agriapp/data/repositories/cartRepository.dart';
+import 'package:agriapp/data/repositories/cart_repository.dart';
 import 'package:agriapp/data/repositories/chat_repository.dart';
 import 'package:agriapp/data/repositories/farm_repository.dart';
-import 'package:agriapp/data/repositories/ordersRepository.dart';
-import 'package:agriapp/data/repositories/productsRepository.dart';
+import 'package:agriapp/data/repositories/orders_repository.dart';
+import 'package:agriapp/data/repositories/products_repository.dart';
 import 'package:agriapp/data/repositories/reports_repository.dart';
 import 'package:agriapp/data/repositories/weather_repository.dart';
 import 'package:agriapp/logic/categories/categories_bloc.dart';
 import 'package:agriapp/logic/chat/chat_bloc.dart';
+import 'package:agriapp/logic/checkout/checkout_bloc.dart';
 import 'package:agriapp/logic/login/login_bloc.dart';
+import 'package:agriapp/logic/orders/orders_bloc.dart';
 import 'package:agriapp/logic/product/product_bloc.dart';
 import 'package:agriapp/logic/reports/reports_bloc.dart';
 import 'package:agriapp/logic/weather/weather_bloc.dart';
@@ -61,6 +63,13 @@ class MyApp extends StatelessWidget {
           BlocProvider<WeatherBloc>(create: (context) => WeatherBloc(weatherRepository: context.read<WeatherRepository>())),
           BlocProvider<ReportsBloc>(create: (context) => ReportsBloc(reportsRepository: context.read<ReportsRepository>())),
           BlocProvider<ChatBloc>(create: (context) => ChatBloc(chatRepository: context.read<ChatRepository>())),
+          BlocProvider<CheckoutBloc>(
+            create: (context) => CheckoutBloc(
+              cartRepository: context.read<CartRepository>(),
+              ordersRepository: context.read<OrdersRepository>(),
+            )..add(const CheckoutChangeEvent()),
+          ),
+          BlocProvider<OrdersBloc>(create: (context) => OrdersBloc(ordersRepository: context.read<OrdersRepository>())..add(OrdersFetchEvent())),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
