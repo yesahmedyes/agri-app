@@ -1,3 +1,4 @@
+import 'package:agriapp/data/models/order.dart';
 import 'package:agriapp/data/repositories/orders_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -15,6 +16,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }
 
   void _onFetch(OrdersFetchEvent event, Emitter<OrdersState> emit) async {
-    await _ordersRepository.fetchOrders();
+    emit(OrdersFetchingState());
+
+    final List<MyOrder> orders = await _ordersRepository.fetchOrders();
+
+    emit(OrdersSuccessState(orders));
   }
 }

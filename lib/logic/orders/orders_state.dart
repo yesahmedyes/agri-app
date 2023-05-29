@@ -12,10 +12,12 @@ class OrdersInitialState extends OrdersState {}
 class OrdersFetchingState extends OrdersState {}
 
 class OrdersSuccessState extends OrdersState {
-  const OrdersSuccessState();
+  final List<MyOrder> orders;
+
+  const OrdersSuccessState(this.orders);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [orders];
 }
 
 class OrdersFailedState extends OrdersState {

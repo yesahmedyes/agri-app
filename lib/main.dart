@@ -4,6 +4,7 @@ import 'package:agriapp/data/repositories/chat_repository.dart';
 import 'package:agriapp/data/repositories/farm_repository.dart';
 import 'package:agriapp/data/repositories/orders_repository.dart';
 import 'package:agriapp/data/repositories/products_repository.dart';
+import 'package:agriapp/data/repositories/profile_repository.dart';
 import 'package:agriapp/data/repositories/reports_repository.dart';
 import 'package:agriapp/data/repositories/weather_repository.dart';
 import 'package:agriapp/logic/categories/categories_bloc.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<ProductsRepository>(create: (context) => ProductsRepository()),
         RepositoryProvider<CartRepository>(create: (context) => CartRepository()),
         RepositoryProvider<OrdersRepository>(create: (context) => OrdersRepository()),
+        RepositoryProvider<ProfileRepository>(create: (context) => ProfileRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -69,7 +71,7 @@ class MyApp extends StatelessWidget {
               ordersRepository: context.read<OrdersRepository>(),
             )..add(const CheckoutChangeEvent()),
           ),
-          BlocProvider<OrdersBloc>(create: (context) => OrdersBloc(ordersRepository: context.read<OrdersRepository>())..add(OrdersFetchEvent())),
+          BlocProvider<OrdersBloc>(create: (context) => OrdersBloc(ordersRepository: context.read<OrdersRepository>())),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
