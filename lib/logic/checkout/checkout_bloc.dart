@@ -35,6 +35,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
     final submitted = await _ordersRepository.placeOrder(address, cart.items);
 
+    print(submitted);
+
     if (submitted) {
       add(CheckoutSubmitSuccessEvent());
     } else {

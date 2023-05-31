@@ -1,7 +1,7 @@
 import 'package:agriapp/data/models/cartItem.dart';
 
 class MyOrder {
-  final String id;
+  final int id;
   final String paymentMethod;
   final String status;
   final String address;
