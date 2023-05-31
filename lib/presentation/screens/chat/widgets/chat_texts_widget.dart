@@ -1,6 +1,7 @@
 import 'package:agriapp/data/models/chat.dart';
 import 'package:agriapp/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChatTextsWidget extends StatefulWidget {
   final List<Chat> chats;
@@ -51,18 +52,21 @@ class _ChatTextsWidgetState extends State<ChatTextsWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           for (var i = 0; i < widget.chats.length; i++)
-            Padding(
-              padding: (i < widget.chats.length - 1) ? const EdgeInsets.only(bottom: 10) : EdgeInsets.zero,
-              child: Align(
-                alignment: (widget.chats[i].role == "user") ? Alignment.centerRight : Alignment.centerLeft,
-                child: IntrinsicWidth(
-                  child: Container(
-                    decoration: BoxDecoration(color: (widget.chats[i].role == "user") ? darkGreenColor : Colors.black87, borderRadius: BorderRadius.circular(5)),
-                    alignment: (widget.chats[i].role == "user") ? Alignment.topRight : Alignment.topLeft,
-                    margin: (widget.chats[i].role == "user") ? const EdgeInsets.only(left: 12) : const EdgeInsets.only(right: 12),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Text(widget.chats[i].content, style: const TextStyle(color: Colors.white)),
+            InkWell(
+              onLongPress: () => Clipboard.setData(ClipboardData(text: widget.chats[i].content)),
+              child: Padding(
+                padding: (i < widget.chats.length - 1) ? const EdgeInsets.only(bottom: 10) : EdgeInsets.zero,
+                child: Align(
+                  alignment: (widget.chats[i].role == "user") ? Alignment.centerRight : Alignment.centerLeft,
+                  child: IntrinsicWidth(
+                    child: Container(
+                      decoration: BoxDecoration(color: (widget.chats[i].role == "user") ? darkGreenColor : Colors.black87, borderRadius: BorderRadius.circular(5)),
+                      alignment: (widget.chats[i].role == "user") ? Alignment.topRight : Alignment.topLeft,
+                      margin: (widget.chats[i].role == "user") ? const EdgeInsets.only(left: 12) : const EdgeInsets.only(right: 12),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Text(widget.chats[i].content, style: const TextStyle(color: Colors.white)),
+                      ),
                     ),
                   ),
                 ),

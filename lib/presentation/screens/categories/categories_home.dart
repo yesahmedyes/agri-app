@@ -83,7 +83,7 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Kissandost', style: Theme.of(context).textTheme.headline1!.copyWith(height: 1.6)),
+            Text('KissanDost', style: Theme.of(context).textTheme.headline1!.copyWith(height: 1.6)),
             InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('/cart');

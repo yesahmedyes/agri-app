@@ -30,6 +30,16 @@ class ProductDetailScreen extends StatelessWidget {
     }
   }
 
+  _buyNow(BuildContext context) {
+    final isValid = _form.currentState!.validate();
+
+    if (isValid) {
+      context.read<CartBloc>().add(CartUpdateEvent(categoryId: categoryId, productId: product.documentId, productName: product.name, productImage: product.image, quantity: int.parse(_controller.text), price: product.price));
+
+      Navigator.of(context).pushNamed('/location');
+    }
+  }
+
   String? quantityValidation(String? text) {
     if (text == null || text.isEmpty) {
       return "Please enter a quantity";
@@ -96,7 +106,7 @@ class ProductDetailScreen extends StatelessWidget {
                     const SizedBox(height: 40),
                     FullWidthButton(text: "Add to Cart", primary: false, onPressed: () => _addToCart(context)),
                     const SizedBox(height: 16),
-                    const FullWidthButton(text: "Buy now"),
+                    FullWidthButton(text: "Buy now", onPressed: () => _buyNow(context)),
                     const SizedBox(height: 20),
                   ],
                 ),

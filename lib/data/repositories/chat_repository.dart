@@ -11,7 +11,7 @@ class ChatRepository {
       {
         "model": "gpt-3.5-turbo-0301",
         "messages": [
-          {"role": "system", "content": "You are a helpful assistant that helps farmers in Pakistan with information to increase their yields"},
+          {"role": "system", "content": "You are a helpful assistant that helps farmers in Pakistan with information to increase their yields. Respond in Urdu."},
           chat.toMap(),
         ],
         "temperature": 0.6
@@ -23,6 +23,8 @@ class ChatRepository {
       headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
       body: body,
     );
+
+    print(response.body);
 
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);

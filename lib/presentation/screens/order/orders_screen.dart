@@ -25,7 +25,7 @@ class OrdersScreen extends StatelessWidget {
               child: Column(
                 children: state.orders.map(
                   (element) {
-                    final name = element.items.map((e) => e.productName).join(' ');
+                    final name = element.items.map((e) => e.productName).join(', ');
                     final total = element.items.map((e) => e.price * e.quantity).toList().sum;
 
                     return Padding(
@@ -41,7 +41,7 @@ class OrdersScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(name, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, height: 1.8), maxLines: 2),
+                                Text((name.length > 40) ? name.substring(0, 40) : name, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, height: 1.8), maxLines: 2),
                                 const SizedBox(height: 8),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

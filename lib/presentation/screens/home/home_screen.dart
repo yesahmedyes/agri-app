@@ -29,9 +29,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
               child: Column(
                 children: [
-                  const SizedBox(height: 30),
-                  const Text('Welcome to KissanDost!!!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 60),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +41,14 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                child: const Text('Profile', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600)),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Icon(Icons.person, size: 22, color: Colors.black87),
+                                    SizedBox(width: 8),
+                                    Text('Profile', style: TextStyle(fontSize: 16, letterSpacing: 1.2, fontWeight: FontWeight.w600, height: 1.25, color: Colors.black87)),
+                                  ],
+                                ),
                               ),
                             ),
                             InkWell(
@@ -51,7 +56,14 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                child: const Text('Orders', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600)),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Icon(Icons.redeem, size: 22, color: Colors.black87),
+                                    SizedBox(width: 8),
+                                    Text('Orders', style: TextStyle(fontSize: 16, letterSpacing: 1.2, fontWeight: FontWeight.w600, height: 1.25, color: Colors.black87)),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -63,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                child: const Text('Terms & Conditions', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600)),
+                                child: const Text('Terms & Conditions', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600, color: Colors.black87)),
                               ),
                             ),
                             InkWell(
@@ -71,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                                child: const Text('Logout', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600)),
+                                child: const Text('Logout', style: TextStyle(fontSize: 15, letterSpacing: 1.2, fontWeight: FontWeight.w600, color: Colors.black87)),
                               ),
                             ),
                           ],
