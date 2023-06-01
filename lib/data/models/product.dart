@@ -8,8 +8,9 @@ class Product {
   final String unit;
   final int ordered;
   final int retailPrice;
+  final String categoryId;
 
-  Product({required this.documentId, required this.name, required this.image, required this.price, required this.unit, required this.ordered, required this.retailPrice});
+  Product({required this.documentId, required this.name, required this.image, required this.price, required this.unit, required this.ordered, required this.retailPrice, required this.categoryId});
 
   Map<String, dynamic> toMap() {
     return {
@@ -20,19 +21,12 @@ class Product {
       'unit': unit,
       'ordered': ordered,
       'retailPrice': retailPrice,
+      'categoryId': categoryId,
     };
   }
 
   factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
-      documentId: map['documentId'] ?? '',
-      name: map['name'] ?? '',
-      image: map['image'] ?? '',
-      price: map['price']?.toInt() ?? 0,
-      unit: map['unit'] ?? '',
-      ordered: map['ordered']?.toInt() ?? 0,
-      retailPrice: map['retailPrice']?.toInt() ?? 0,
-    );
+    return Product(documentId: map['documentId'] ?? '', name: map['name'] ?? '', image: map['image'] ?? '', price: map['price']?.toInt() ?? 0, unit: map['unit'] ?? '', ordered: map['ordered']?.toInt() ?? 0, retailPrice: map['retailPrice']?.toInt() ?? 0, categoryId: map['categoryId'] ?? '');
   }
 
   String toJson() => json.encode(toMap());

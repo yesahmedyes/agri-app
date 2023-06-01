@@ -1,4 +1,5 @@
 import 'package:agriapp/logic/cart/cart_bloc.dart';
+import 'package:agriapp/presentation/screens/cart/widgets/suggestionBox.dart';
 import 'package:agriapp/presentation/widgets/custom_progress_indicator.dart';
 import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:agriapp/presentation/widgets/navigation/customBottomNavigation.dart';
@@ -22,12 +23,23 @@ class CartScreen extends StatelessWidget {
             if (items.isEmpty) {
               return Center(child: Text('Sorry, the cart is empty.', style: Theme.of(context).textTheme.headline2));
             } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListView.builder(
-                  itemCount: items.length + 2,
-                  itemBuilder: (context, index) => (index == 0 || index == items.length + 1) ? const SizedBox(height: 30) : Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: CartItemTile(item: items[index - 1])),
-                ),
+              return SingleChildScrollView(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 30),
+                        for (int i = 0; i < state.items.length; i++)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6),
+                            child: CartItemTile(item: items[i]),
+                          ),
+                        const SizedBox(height: 30),
+                         SuggestionBox(items: items),
+                        const SizedBox(height: 30),
+                      ],
+                    )),
               );
             }
           }

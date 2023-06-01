@@ -1,6 +1,7 @@
 import 'package:agriapp/data/models/category.dart';
 import 'package:agriapp/data/models/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
 
 class ProductsRepository {
   final FirebaseFirestore _firestore;
@@ -37,5 +38,24 @@ class ProductsRepository {
     }
 
     return _categories[documentId]!.products.toList();
+  }
+
+  Future<Product?> fetchSuggestion(String productId) async {
+    final response = await http.get(Uri.https('dry-citadel-76352.herokuapp.com', 'suggestion/${productId}'));
+
+    print("here");
+    print(response.body);
+
+    if (response.body.isNotEmpty) {
+      final responseProductId = response.body;
+
+      final snapshot = await _firestore.collection('products').doc(responseProductId).get();
+
+      final data = snapshot.data() as Map<String, dynamic>;
+
+      return Product.fromMap(data);
+    }
+
+    return null;
   }
 }

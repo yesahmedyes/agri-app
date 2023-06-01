@@ -43,6 +43,7 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
                 itemBuilder: (ctx, index) {
                   final price = products[index].price;
                   final unit = products[index].unit;
+
                   return Card(
                     elevation: 1,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
