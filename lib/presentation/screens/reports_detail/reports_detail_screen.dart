@@ -1,6 +1,7 @@
 import 'package:agriapp/logic/reports/reports_bloc.dart';
-import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:agriapp/presentation/widgets/custom_progress_indicator.dart';
+import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class ReportsDetailScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     const Text('Nitrogen report', style: TextStyle(fontSize: 18)),
                     const SizedBox(height: 16),
-                    Image.network(state.report.nitrogen),
+                    CachedNetworkImage(imageUrl: state.report.nitrogen),
                     const SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
@@ -46,7 +47,7 @@ class ReportsDetailScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     const Text('Water report', style: TextStyle(fontSize: 18)),
                     const SizedBox(height: 16),
-                    Image.network(state.report.water),
+                    CachedNetworkImage(imageUrl: state.report.water),
                     const SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,

@@ -8,3 +8,9 @@ abstract class FarmsEvent extends Equatable {
 }
 
 class FarmsLoadEvent extends FarmsEvent {}
+
+class FarmsLoadedEvent extends FarmsEvent {
+  final List<Farm> farms;
+
+  const FarmsLoadedEvent({required this.farms});
+}
