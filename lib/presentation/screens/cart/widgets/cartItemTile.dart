@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:agriapp/data/models/cartItem.dart';
+import 'package:agriapp/logic/cart/cart_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartItemTile extends StatefulWidget {
   final CartItem item;
@@ -17,6 +21,30 @@ class _CartItemTileState extends State<CartItemTile> {
   void _changeState() {
     setState(() {
       opened = !opened;
+    });
+  }
+
+  Timer? debouncer;
+  int quantity = 0;
+
+  updateQuantity(int changeInQuantity) {
+    debouncer?.cancel();
+
+    quantity += changeInQuantity;
+
+    debouncer = Timer(const Duration(milliseconds: 300), () {
+      context.read<CartBloc>().add(
+            CartUpdateEvent(
+              categoryId: widget.item.categoryId,
+              productId: widget.item.productId,
+              quantity: quantity,
+              productName: widget.item.productName,
+              productImage: widget.item.productImage,
+              price: widget.item.price,
+            ),
+          );
+
+      quantity = 0;
     });
   }
 
@@ -44,18 +72,47 @@ class _CartItemTileState extends State<CartItemTile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          (opened) ? widget.item.productName : '${widget.item.productName} (${widget.item.quantity})',
+                          widget.item.productName,
                           style: Theme.of(context).textTheme.headline3!.copyWith(fontWeight: FontWeight.w600, height: 1.4),
-                          maxLines: 2,
+                          maxLines: 1,
                         ),
-                        const SizedBox(height: 10),
-                        if (!opened) Text('Rs $totalPrice'),
+                        const SizedBox(height: 2),
+                        if (!opened)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Rs $totalPrice'),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  InkWell(
+                                    onTap: () => updateQuantity(-1),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                                      child: Text('-', style: TextStyle(fontSize: 18, color: Colors.black54, height: 1.2)),
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Colors.grey)),
+                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                    child: Text(
+                                      widget.item.quantity.toString(),
+                                      style: const TextStyle(fontSize: 12, height: 1, color: Colors.black87),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () => updateQuantity(1),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                                      child: Text('+', style: TextStyle(fontSize: 18, color: Colors.black54, height: 1.2)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: opened ? const Icon(Icons.keyboard_arrow_up) : const Icon(Icons.keyboard_arrow_down),
                   ),
                 ],
               ),

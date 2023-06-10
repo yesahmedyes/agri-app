@@ -59,7 +59,17 @@ class CartRepository {
     final Map<String, CartItem> _oldCart = Map.from(_cart);
 
     if (_cart.containsKey(data['productId']) && overWrite == false) {
-      _cart[data['productId']] = CartItem.fromMap(data);
+      final CartItem oldCartItem = _cart[data['productId']]!;
+      final int addQuantity = data['quantity']!;
+
+      _cart[data['productId']] = CartItem(
+        categoryId: oldCartItem.categoryId,
+        price: oldCartItem.price,
+        productId: oldCartItem.productId,
+        productImage: oldCartItem.productImage,
+        productName: oldCartItem.productName,
+        quantity: (oldCartItem.quantity + addQuantity),
+      );
     } else {
       _cart[data['productId']] = CartItem.fromMap(data);
     }

@@ -9,6 +9,7 @@ import 'package:agriapp/presentation/widgets/navigation/customAppBarBack.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -25,6 +26,8 @@ class ProductDetailScreen extends StatelessWidget {
 
     if (isValid) {
       context.read<CartBloc>().add(CartUpdateEvent(categoryId: categoryId, productId: product.documentId, productName: product.name, productImage: product.image, quantity: int.parse(_controller.text), price: product.price));
+
+      Fluttertoast.showToast(msg: 'Product added to cart', toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER);
 
       Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
     }

@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
                             child: CartItemTile(item: items[i]),
                           ),
                         const SizedBox(height: 30),
-                         SuggestionBox(items: items),
+                        SuggestionBox(items: items),
                         const SizedBox(height: 30),
                       ],
                     )),

@@ -5,7 +5,6 @@ import 'package:agriapp/data/models/cartItem.dart';
 import 'package:agriapp/data/repositories/cart_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -46,10 +45,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   _onUpdateComplete(CartUpdateCompleteEvent event, Emitter<CartState> emit) {
-    if (event.message.isNotEmpty) {
-      Fluttertoast.showToast(msg: event.message, toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.CENTER);
-    }
-
     emit(CartOpenedState(items: event.items));
   }
 
