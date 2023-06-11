@@ -40,7 +40,7 @@ class RouteGenerator {
       case '/getFarm':
         return MaterialPageRoute(builder: (context) => GetFarmLocationScreen());
       case '/reportsDetail':
-        return MaterialPageRoute(builder: (context) => const ReportsDetailScreen());
+        return MaterialPageRoute(builder: (context) => ReportsDetailScreen());
       case '/productsList':
         return MaterialPageRoute(builder: (context) => const ProductsListScreen());
       case '/productDetail':
